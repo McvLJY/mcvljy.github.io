@@ -3,13 +3,31 @@
     <head>
         <meta name="viewport" content="user-scalable=0">
         <link href="./css/bootstrap.css" rel="stylesheet">
+        <script src="./js/vue.js"></script>
     </head>
     <body>
-        <div class="container">
+        <div id="phone_num" class="container">
             <!-- <img src="./pics01.jpg"  alt="图片无法显示" /> -->
-            <input type="text" class="input-phone form-control">
+            <input type="text" v-model="ph_num" class="input-phone form-control">
+            <button @click="updt" class="input-submit btn btn-primary">提交</button>
         </div>
     </body>
+    <script>
+        var app = new Vue({
+            el: "#phone_num",
+            data() {
+                return {
+                    ph_num: '13'
+                }
+            },
+            methods: {
+                updt() {
+                    console.log(this.ph_num)
+                    window.history.pushState(null, null, document.URL + '?id=' + String(this.ph_num))
+                }
+            }
+        })
+    </script>
 </html>
 <style>
     .container{
@@ -25,5 +43,14 @@
         height: 86px;
         line-height: 60px;
         font-size: 60px;
+    }
+    .input-submit{
+        position: absolute;
+        top: 1357px;
+        left: 205px;
+        width: 588px;
+        height: 86px;
+        line-height: 60px;
+        font-size: 50px;
     }
 </style>
